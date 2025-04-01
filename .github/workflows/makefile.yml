@@ -56,11 +56,10 @@ jobs:
           # 实际构建命令（示例）
           make -j$(nproc --all) ARCH=arm64 CLANG_TRIPLE=aarch64-linux-gnu- \
               CROSS_COMPILE=aarch64-linux-gnu- \
-              O=out
 
           # 打包产物
           mkdir -p ../artifact
-          cp out/arch/arm64/boot/Image ../artifact/
+          cp arch/arm64/boot/Image ../artifact/
           tar czvf ../artifact/kernel-${{ steps.dynamic-tag.outputs.tag }}.tar.gz -C out/arch/arm64/boot/ .
 
       - name: Create Release
